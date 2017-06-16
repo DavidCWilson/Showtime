@@ -2,12 +2,14 @@
   Layout="Shared/_Layout.cshtml";
 }
 
+<p>Venues:</p>
 @if (Model.Count != 0)
 {
   <ul>
   @foreach (var venue in @Model)
   {
     <li><a href="/venues/@venue.GetId()">@venue.GetName() | @venue.GetCity()</a>
+      <p>Genres:</p>
       <ul>
         @foreach (var genre in @venue.GetGenresOfBandsPlaying())
         {
@@ -18,7 +20,10 @@
   }
   </ul>
 }
-<p><a href="/venues/add">Add a Venue</a></p>
-<p>
-  <a href="/">Home</a>
-</p>
+<p><a href="/venues/add">Add</a></p>
+<div id="navigation">
+  <p><a href="/venues">Venues</a></p>
+  <p><a href="/bands">Bands</a></p>
+  <p><a href="/genres">Genres</a></p>
+  <p><a href="/">Home</a></p>
+</div>

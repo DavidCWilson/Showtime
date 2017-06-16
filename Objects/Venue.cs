@@ -137,10 +137,13 @@ namespace Band_Tracker.Objects
       conn.Open();
 
       SqlCommand cmd = new SqlCommand("SELECT * FROM venues WHERE id = @VenueId", conn);
+
       SqlParameter venueIdParameter = new SqlParameter();
       venueIdParameter.ParameterName = "@VenueId";
       venueIdParameter.Value = id.ToString();
+
       cmd.Parameters.Add(venueIdParameter);
+
       SqlDataReader rdr = cmd.ExecuteReader();
 
       int foundVenueId = 0;
@@ -172,6 +175,7 @@ namespace Band_Tracker.Objects
       conn.Open();
 
       SqlCommand cmd = new SqlCommand("SELECT bands.* FROM venues JOIN shows ON (venues.id = shows.venues_id) JOIN bands ON (shows.bands_id = bands.id) WHERE venues.id = @VenueId;", conn);
+
       SqlParameter venueIdParameter = new SqlParameter();
       venueIdParameter.ParameterName = "@VenueId";
       venueIdParameter.Value = this.GetId().ToString();
@@ -189,7 +193,6 @@ namespace Band_Tracker.Objects
         Band newBand = new Band(bandName, bandId);
         bands.Add(newBand);
       }
-
       if (rdr != null)
       {
         rdr.Close();
@@ -307,7 +310,6 @@ namespace Band_Tracker.Objects
       {
         newBand.SetId(rdr.GetInt32(0));
       }
-
       if (rdr != null)
       {
         rdr.Close();
@@ -317,7 +319,7 @@ namespace Band_Tracker.Objects
         conn.Close();
       }
     }
-    // TRYING TO GET GENRES PLAYING AT VENUE
+
     public List<Genre> GetGenresOfBandsPlaying()
     {
       SqlConnection conn = DB.Connection();

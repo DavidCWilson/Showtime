@@ -28,11 +28,12 @@ else{
   <input type="hidden" name="_method" value="PATCH">
   <input name="venue-id" type="hidden" value='@Model["venue"].GetId()'>
   <label for="venue-name">Change Name:</label>
-  <input id="venue-name" name="venue-name" type="text">
+  <input id="venue-name" name="venue-name" type="text"><br/>
   <label for="venue-city">Change City:</label>
-  <input id="venue-city" name="venue-city" type="text">
+  <input id="venue-city" name="venue-city" type="text"><br/>
   <button type="submit">Submit</button>
 </form>
+<br/>
 <form action='/venues/@Model["venue"].GetId()/edit_band' method="post">
   <input name="venue-id" type="hidden" value='@Model["venue"].GetId()'>
   <label for="band-id">Choose a band to play here:</label>
@@ -41,7 +42,7 @@ else{
     {
       <option value="@chosenBand.GetId()">@chosenBand.GetName()</option>
     }
-  </select>
+  </select><br/>
   <button type="submit">Submit</button>
 </form>
 
@@ -53,4 +54,9 @@ else{
   <button type="submit" name="delete">DELETE</button>
 </form>
 <h4><a href ="/venues/add">Add a new Venue!</a></h4>
-<h4><a href="/">home</a></h4>
+<div id="navigation">
+  <p><a href="/venues">Venues</a></p>
+  <p><a href="/bands">Bands</a></p>
+  <p><a href="/genres">Genres</a></p>
+  <p><a href="/">Home</a></p>
+</div>

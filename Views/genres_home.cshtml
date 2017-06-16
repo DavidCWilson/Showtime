@@ -1,7 +1,7 @@
 @{
   Layout="Shared/_Layout.cshtml";
 }
-
+<p>Genres:</p>
 @if (Model.Count != 0)
 {
   <ul>
@@ -11,7 +11,10 @@
   }
   </ul>
 }
-<p><a href="/genres/add">Add a Genre</a></p>
-<p>
-  <a href="/">Home</a>
-</p>
+<p><a href="/genres/add">Add</a></p>
+<div id="navigation">
+  <p><a href="/venues">Venues</a></p>
+  <p><a href="/bands">Bands</a></p>
+  <p><a href="/genres">Genres</a></p>
+  <p><a href="/">Home</a></p>
+</div>

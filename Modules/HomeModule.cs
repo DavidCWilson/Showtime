@@ -39,12 +39,16 @@ namespace Band_Tracker.Module
         var selectedVenue = Venue.Find(parameters.id);
         var venuesBands = selectedVenue.GetBands();
         var allBands = Band.GetAll();
-        // var selectedBandsGenres = selectedVenue.GetGenresOfBandsPlaying(venuesBands);
         model.Add("venue", selectedVenue);
         model.Add("bands", venuesBands);
         model.Add("allBands", allBands);
-        // model.Add("bandGenres", selectedBandsGenres);
         return View["venue.cshtml", model];
+      };
+      Post["/venues/{id}/edit_band"] = _ => {
+        Venue selectedVenue = Venue.Find(Request.Form["venue-id"]);
+        Band selectedBand = Band.Find(Request.Form["band-id"]);
+        selectedVenue.AddBandToShowsJoinTable(selectedBand);
+        return View["success.cshtml"];
       };
       Patch["/venues/{id}/edit"] = parameters => {
         Venue selectedVenue = Venue.Find(parameters.id);
@@ -149,20 +153,12 @@ namespace Band_Tracker.Module
           return View["dun_goofed.cshtml"];
         }
       };
-//JOIN TABLE PATHING
-      Post["/venues/{id}/edit_band"] = _ => {
-        Venue selectedVenue = Venue.Find(Request.Form["venue-id"]);
-        Band selectedBand = Band.Find(Request.Form["band-id"]);
-        selectedVenue.AddBandToShowsJoinTable(selectedBand);
-        return View["success.cshtml"];
-      };
       Post["/genres/{id}/edit_band"] = _ => {
         Genre selectedGenre = Genre.Find(Request.Form["genre-id"]);
         Band selectedBand = Band.Find(Request.Form["band-id"]);
         selectedGenre.AddBandToBands_GenresJoinTable(selectedBand);
         return View["success.cshtml"];
       };
-
     }
   }
 }

@@ -137,8 +137,8 @@ namespace Band_TrackerTests
 
       testVenue3.Delete();
       List<Venue> resultVenues = Venue.GetAll();
-      List<Venue> testVenueList = new List<Venue> {testVenue1, testVenue2};
-
+      List<Venue> testVenueList = new List<Venue> {testVenue2, testVenue1};
+      
       Assert.Equal(testVenueList, resultVenues);
     }
   }

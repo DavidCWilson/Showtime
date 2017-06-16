@@ -1,0 +1,128 @@
+body {
+  font-family: 'MedievalSharp', cursive;
+  color: #7D7E7F;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#530b57+0,780c3d+25,090c15+50,780c3d+75,530b57+100 */
+  background: rgb(83,11,87); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(83,11,87,1) 0%, rgba(120,12,61,1) 25%, rgba(9,12,21,1) 50%, rgba(120,12,61,1) 75%, rgba(83,11,87,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(83,11,87,1) 0%,rgba(120,12,61,1) 25%,rgba(9,12,21,1) 50%,rgba(120,12,61,1) 75%,rgba(83,11,87,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(83,11,87,1) 0%,rgba(120,12,61,1) 25%,rgba(9,12,21,1) 50%,rgba(120,12,61,1) 75%,rgba(83,11,87,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#530b57', endColorstr='#530b57',GradientType=0 ); /* IE6-9 */
+}
+
+.container {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#643441+0,0a0506+100&0.8+0,0.8+100 */
+  background: -moz-radial-gradient(center, ellipse cover,  rgba(100,52,65,0.6) 0%, rgba(10,5,6,0.6) 100%); /* FF3.6-15 */
+  background: -webkit-radial-gradient(center, ellipse cover,  rgba(100,52,65,0.6) 0%,rgba(10,5,6,0.6) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: radial-gradient(ellipse at center,  rgba(100,52,65,0.6) 0%,rgba(10,5,6,0.6) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc643441', endColorstr='#cc0a0506',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+  height: 760px;
+  margin: 150px;
+  padding: 20px;
+  border: 3px solid #643441;
+  overflow: auto;
+}
+
+h1 {
+  width: 500px;
+  margin: 0 auto 60px;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+p {
+  font-size: 18px;
+}
+
+a {
+  color: #7D7E7F;
+  text-decoration: none;
+}
+
+#homePage {
+  padding: 5px;
+}
+
+#homePage h3 {
+  text-align: center;
+}
+
+#navigation {
+  float: right;
+  clear: left;
+  position: absolute;
+  top: 150px;
+  right: 180px;
+}
+
+p a {
+  color: #090C15;
+  float: left;
+  padding-top: 4px;
+  text-align: center;
+  display: inline-block;
+  width: 80px;
+  height: 20px;
+  background-color: #7D7E7F;
+  border: 1px solid #000;
+}
+
+p a:hover, form button:hover {
+  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+}
+
+p a:active, form button:active {
+  box-shadow: inset 5px 5px 5px 0px rgba(0,0,0,0.75);
+}
+
+form input, select {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#643441+0,0a0506+100&0.8+0,0.8+100 */
+  background: -moz-linear-gradient(left,  rgba(100,52,65,0.8) 0%, rgba(10,5,6,0.8) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  rgba(100,52,65,0.8) 0%,rgba(10,5,6,0.8) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  rgba(100,52,65,0.8) 0%,rgba(10,5,6,0.8) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc643441', endColorstr='#cc0a0506',GradientType=1 ); /* IE6-9 */
+  color: #fff;
+}
+
+form button {
+  color: #090C15;
+  padding-top: 4px;
+  text-align: center;
+  width: 120px;
+  height: 30px;
+  background-color: #7D7E7F;
+  border: 1px solid #000;
+}
+
+#goofedButton {
+  float: left;
+  clear: left;
+}
+
+footer {
+	margin: 0 auto -10px;
+  padding: 0;
+  height: auto;
+  width: 700px;
+	background-color: rgba(56, 56, 56, 0.5);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-width: 1px 1px 0;
+  border-style: solid;
+  border-color: #643441;
+  border-radius: 4px 4px 0 0;
+  z-index: -1;
+}
+
+footer a {
+  color: inherit;
+  border: none;
+  background: none;
+  box-shadow: none;
+  box-shadow: inset none;
+  float: none;
+}
