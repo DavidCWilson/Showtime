@@ -68,5 +68,42 @@ namespace Band_TrackerTests
       //Assert
       Assert.Equal(testId, result);
     }
+
+    [Fact]
+    public void Test_FindsVenueInDatabaseWorks()
+    {
+      //Arrange
+      Venue testVenue = new Venue("Lovecraft", "Portland");
+      testVenue.Save();
+
+      //Act
+      Venue result = Venue.Find(testVenue.GetId());
+
+      //Assert
+      Assert.Equal(testVenue, result);
+    }
+
+    [Fact]
+    public void Test_ReturnsAllBandsAddedToVenuesList()
+    {
+
+      Venue testVenue = new Venue("Swift", "Portland");
+      testVenue.Save();
+      Band testBand1 = new Band("MF DOOM");
+      testBand1.Save();
+      Band testBand2 = new Band("BusDriver, Milo, Anderson .Paak");
+      testBand2.Save();
+
+      testVenue.AddBandToShowsJoinTable(testBand1);
+      testVenue.AddBandToShowsJoinTable(testBand2);
+
+      List<Band> savedBands = testVenue.GetBands();
+      List<Band> testList = new List<Band> {testBand1, testBand2};
+      // CONSOLE LOGGING LIST ITEMS (GETTING IDs)
+      // Console.WriteLine("savedBands list id = {0}, {1}", savedBands[0].GetName(), savedBands[1].GetName());
+      // Console.WriteLine("testList list id = {0}, {1}", testList[0].GetName(), testList[1].GetName());
+
+      Assert.Equal(testList, savedBands);
+    }
   }
 }

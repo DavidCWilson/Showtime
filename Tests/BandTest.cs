@@ -68,5 +68,59 @@ namespace Band_TrackerTests
       //Assert
       Assert.Equal(testId, result);
     }
+
+    [Fact]
+    public void Test_FindsBandInDatabaseWorks()
+    {
+      //Arrange
+      Band testBand = new Band("ChthoniC");
+      testBand.Save();
+
+      //Act
+      Band result = Band.Find(testBand.GetId());
+
+      //Assert
+      Assert.Equal(testBand, result);
+    }
+
+    [Fact]
+    public void Test_ReturnsAllVenuesAddedToBandsList()
+    {
+
+      Band testBand = new Band("The Number 12 Looks Like You");
+      testBand.Save();
+      Venue testVenue1 = new Venue("BlackWater Bar", "Portland");
+      testVenue1.Save();
+      Venue testVenue2 = new Venue("The Know", "Portland");
+      testVenue2.Save();
+
+      testVenue1.AddBandToShowsJoinTable(testBand);
+      testVenue2.AddBandToShowsJoinTable(testBand);
+
+      List<Venue> savedVenues = testBand.GetVenues();
+      List<Venue> testList = new List<Venue> {testVenue1, testVenue2};
+
+      Assert.Equal(testList, savedVenues);
+    }
+
+    [Fact]
+    public void Test_TheAbilityToAdd_SingleVanueToBand()
+    {
+
+      Band testBand = new Band("The Number 12 Looks Like You");
+      testBand.Save();
+      Venue testVenue1 = new Venue("BlackWater Bar", "Portland");
+      testVenue1.Save();
+      Venue testVenue2 = new Venue("The Know", "Portland");
+      testVenue2.Save();
+
+      testBand.AddVenueToShowsJoinTable(testVenue1);
+      testBand.AddVenueToShowsJoinTable(testVenue2);
+
+      List<Venue> savedVenues = testBand.GetVenues();
+      List<Venue> testList = new List<Venue> {testVenue1, testVenue2};
+
+      Assert.Equal(testList, savedVenues);
+    }
   }
 }

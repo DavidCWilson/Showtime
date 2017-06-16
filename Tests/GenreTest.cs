@@ -68,5 +68,19 @@ namespace Band_TrackerTests
       //Assert
       Assert.Equal(testId, result);
     }
+
+    [Fact]
+    public void Test_FindsGenreInDatabaseWorks()
+    {
+      //Arrange
+      Genre testGenre = new Genre("Speedcore");
+      testGenre.Save();
+
+      //Act
+      Genre result = Genre.Find(testGenre.GetId());
+
+      //Assert
+      Assert.Equal(testGenre, result);
+    }
   }
 }

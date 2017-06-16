@@ -113,5 +113,39 @@ namespace Band_Tracker.Objects
       }
       return allGenres;
     }
+
+
+    public static Genre Find(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM genres WHERE id = @GenreId", conn);
+      SqlParameter genreIdParameter = new SqlParameter();
+      genreIdParameter.ParameterName = "@GenreId";
+      genreIdParameter.Value = id.ToString();
+      cmd.Parameters.Add(genreIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int foundGenreId = 0;
+      string foundGenreName = null;
+
+      while(rdr.Read())
+      {
+        foundGenreId = rdr.GetInt32(0);
+        foundGenreName = rdr.GetString(1);
+      }
+      Genre foundGenre = new Genre(foundGenreName, foundGenreId);
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return foundGenre;
+    }
   }
 }
