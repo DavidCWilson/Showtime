@@ -51,8 +51,8 @@ This web application will allow the user to add bands and venues. They will be a
 You will also need SSMS (https://go.microsoft.com/fwlink/?linkid=849819).
 7.  Setting up the database will occur after installation and downloading. In PowerShell run the command: sqlcmd -S "(localdb)\mssqllocaldb". Now type SSMS into your windows search bar and open SQL Server Management Studio.
 8.  To connect to the appropriate database type (localdb)\mssqllocaldb into the "server name" field in the popup window.
-9.  I have included a few SQL scripts to help you start up your server, they can be found in the SQL_Queries folder. Double click on them and open them with SSMS, and then execute the one titled band_tracker_setup.
-10. One more query to execute is band_tracker_test_setup. This will set up a testing environment for the Xunit Tests.
+9.  I have included a few SQL scripts to help you start up your server, they can be found in the SQL_Queries folder. Double click on them and open them with SSMS, and then execute the one titled band_tracker_creator.
+10. One more query to execute is band_tracker_test_creator. This will set up a testing environment for the Xunit Tests.
 11.  Once those are all installed and the tables are created, restart PowerShell and enter "dnvm upgrade" into the prompt.
 12.  Now you can navigate to the directory in which you downloaded the Band_Tracker App, and then into the Band_Tracker home file.
 13.  To start the web server necessary for proper app functionality you will need to type in "dnu restore" then "dnx kestrel".

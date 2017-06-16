@@ -57,6 +57,37 @@ a {
   right: 180px;
 }
 
+#carl1 {
+  float: left;
+  clear: all;
+  position: fixed;
+  left: 158px;
+  top: 958px;
+}
+
+#carl2 {
+  float: left;
+  clear: all;
+  position: fixed;
+  top: 958px;
+  left: 300px
+}
+
+#carl4 {
+  float: right;
+  clear: all;
+  position: fixed;
+  right: 300px;
+  top: 958px;
+}
+#carl5 {
+  float: right;
+  clear: all;
+  position: fixed;
+  right: 158px;
+  top: 958px;
+}
+
 p a {
   color: #090C15;
   float: left;
@@ -106,6 +137,7 @@ footer {
   padding: 0;
   height: auto;
   width: 700px;
+  text-align: center;
 	background-color: rgba(56, 56, 56, 0.5);
   position: fixed;
   bottom: 0;
