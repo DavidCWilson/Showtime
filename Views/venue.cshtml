@@ -1,0 +1,41 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+<h3>@Model["venue"].GetName()</h3>
+<h4>Bands:</h4>
+@if (Model["bands"].Count == 0)
+{
+  <p>AINT NO BANDS</p>
+}
+else{
+  <ul>
+    @foreach (var band in @Model["bands"])
+    {
+      <li><a href="/bands/@band.GetId()">@band.GetName()</a></li>
+    }
+  </ul>
+}
+
+<h3>Edit this venue:</h3>
+<form action='/venues/@Model["venue"].GetId()/edit' method="post">
+  <input type="hidden" name="_method" value="PATCH">
+  <input name="venue-id" type="hidden" value='@Model["venue"].GetId()'>
+  <label for="venue-name">Change Name:</label>
+  <input id="venue-name" name="venue-name" type="text">
+  <label for="venue-city">Change City:</label>
+  <input id="venue-city" name="venue-city" type="text">
+  <button type="submit">Submit</button>
+</form>
+<form action='/venues/@Model["venue"].GetId()/edit_band' method="post">
+  <input name="venue-id" type="hidden" value='@Model["venue"].GetId()'>
+  <label for="band-id">Choose a band to play here:</label>
+  <select name="band-id">
+    @foreach (var chosenBand in @Model["allBands"])
+    {
+      <option value="@chosenBand.GetId()">@chosenBand.GetName()</option>
+    }
+  </select>
+  <button type="submit">Submit</button>
+</form>
+<h4><a href ="/venues/add">Add a new Venue!</a></h4>
+<h4><a href="/">home</a></h4>
