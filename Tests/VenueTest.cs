@@ -105,5 +105,41 @@ namespace Band_TrackerTests
 
       Assert.Equal(testList, savedBands);
     }
+
+    [Fact]
+    public void Test_IfUpdate_UpdatesVenueInDatabase()
+    {
+      string name = "Aztec";
+      string city = "Portland";
+      Venue testVenue = new Venue(name, city);
+      testVenue.Save();
+      string newName = "Nascar Hall of Fame";
+      string newCity = "Mooresville";
+
+      testVenue.UpdateName(newName);
+      testVenue.UpdateCity(newCity);
+
+      string result = testVenue.GetName();
+      string result2 = testVenue.GetCity();
+
+      Assert.Equal(newName, result);
+      Assert.Equal(newCity, result2);
+    }
+    [Fact]
+    public void Test_IfDelete_DeletesVenueFromDatabase()
+    {
+      Venue testVenue1 = new Venue("Hawthorne Theatre", "Portland");
+      testVenue1.Save();
+      Venue testVenue2 = new Venue("Arlene Shnitzer", "Portland");
+      testVenue2.Save();
+      Venue testVenue3 = new Venue("Barlein Shnauzer", "Portland");
+      testVenue3.Save();
+
+      testVenue3.Delete();
+      List<Venue> resultVenues = Venue.GetAll();
+      List<Venue> testVenueList = new List<Venue> {testVenue1, testVenue2};
+
+      Assert.Equal(testVenueList, resultVenues);
+    }
   }
 }
