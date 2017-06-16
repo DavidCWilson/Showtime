@@ -6,7 +6,7 @@
 
 ## Description
 
-This web application will allow the user to add bands and venues. They will be able to delete and/or edit a bands and venues, and add bands to venues (and vice-versa).
+This web application will allow the user to add bands and venues. They will be able to delete and/or edit bands and venues, and add bands to venues (and vice-versa).
 
 <!-- ![alt text](https://github.com/GrapeSalad/Hair-Salon/blob/master/Content/img/barbershop.gif "Barber Of Seville") -->
 
@@ -38,6 +38,7 @@ This web application will allow the user to add bands and venues. They will be a
 | User enters band name | "The Number 12 Looks Like You" | "The Number 12 Looks Like You" |
 | User realizes error, needs to edit Venue name | "Lvcrft" | "Lvcrft" --> "Lovecraft" |
 | User notices band is no longer together | Delete "Miguel" | success |
+| User wants to see the genres at a venue | View "venue" page | Venue Name: List of genres that the bands visiting the venue play |
 
 ## Setup/Installation Requirements
 
@@ -83,6 +84,8 @@ If you have any issues, questions, ideas, concerns, or contribution ideas please
 * xUnit
 * SQL
 * SSMS
+* Adobe Color Picker
+* CSS Gradient Generator
 
 ### License
 
