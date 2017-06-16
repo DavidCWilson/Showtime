@@ -7,7 +7,14 @@
   <ul>
   @foreach (var venue in @Model)
   {
-    <li><a href="/venues/@venue.GetId()">@venue.GetName() | @venue.GetCity()</a></li>
+    <li><a href="/venues/@venue.GetId()">@venue.GetName() | @venue.GetCity()</a>
+      <ul>
+        @foreach (var genre in @venue.GetGenresOfBandsPlaying())
+        {
+          <li><a href="/genre/@genre.GetId()">@genre.GetName()</a></li>
+        }
+      </ul>
+    </li>
   }
   </ul>
 }

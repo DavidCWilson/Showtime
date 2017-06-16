@@ -39,9 +39,11 @@ namespace Band_Tracker.Module
         var selectedVenue = Venue.Find(parameters.id);
         var venuesBands = selectedVenue.GetBands();
         var allBands = Band.GetAll();
+        // var selectedBandsGenres = selectedVenue.GetGenresOfBandsPlaying(venuesBands);
         model.Add("venue", selectedVenue);
         model.Add("bands", venuesBands);
         model.Add("allBands", allBands);
+        // model.Add("bandGenres", selectedBandsGenres);
         return View["venue.cshtml", model];
       };
       Patch["/venues/{id}/edit"] = parameters => {

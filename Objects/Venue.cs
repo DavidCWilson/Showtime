@@ -109,7 +109,7 @@ namespace Band_Tracker.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM venues;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM venues ORDER BY name;", conn);
       SqlDataReader rdr = cmd.ExecuteReader();
 
       while(rdr.Read())
@@ -316,6 +316,42 @@ namespace Band_Tracker.Objects
       {
         conn.Close();
       }
+    }
+    // TRYING TO GET GENRES PLAYING AT VENUE
+    public List<Genre> GetGenresOfBandsPlaying()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT DISTINCT genres.* FROM venues JOIN shows ON (venues.id = shows.venues_id) JOIN bands ON (shows.bands_id = bands.id) JOIN bands_genres ON (bands_genres.bands_id = bands.id) JOIN genres ON (genres.id = bands_genres.genres_id) WHERE venues.id = @VenueId ORDER BY genres.name;", conn);
+
+      SqlParameter venueIdParameter = new SqlParameter();
+      venueIdParameter.ParameterName = "@VenueId";
+      venueIdParameter.Value = this.GetId();
+
+      cmd.Parameters.Add(venueIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Genre> genres = new List<Genre>{};
+
+      while (rdr.Read())
+      {
+        int genreId = rdr.GetInt32(0);
+        string genreName = rdr.GetString(1);
+        Genre newGenre = new Genre(genreName, genreId);
+        genres.Add(newGenre);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return genres;
     }
 
   }
