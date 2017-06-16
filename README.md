@@ -21,7 +21,7 @@ This web application will allow the user to add bands and venues. They will be a
 | View specific venue | "localhost:5004/venues/1" | venue.cshtml |
 | View specific band | "localhost:5004/bands/1" | band.cshtml |
 | Edit Venue | "localhost:5004/venues/1/edit" | venue.cshtml |
-| Delete Band | "localhost:5004/bands/1/delete" | band_delete.cshtml |
+| Delete Venue | "localhost:5004/venues/1/delete" | success.cshtml |
 
 ### SPECS
 1.  List all Venues

@@ -147,5 +147,107 @@ namespace Band_Tracker.Objects
       }
       return foundGenre;
     }
+
+    public List<Band> GetBands()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT bands.* FROM genres JOIN bands_genres ON (genres.id = bands_genres.genres_id) JOIN bands ON (bands_genres.bands_id = bands.id) WHERE genres.id = @GenreId;", conn);
+      SqlParameter genreIdParameter = new SqlParameter();
+      genreIdParameter.ParameterName = "@GenreId";
+      genreIdParameter.Value = this.GetId().ToString();
+
+      cmd.Parameters.Add(genreIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Band> bands = new List<Band>{};
+
+      while(rdr.Read())
+      {
+        int bandId = rdr.GetInt32(0);
+        string bandName = rdr.GetString(1);
+        Band newBand = new Band(bandName, bandId);
+        bands.Add(newBand);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return bands;
+    }
+
+    public void AddBandToBands_GenresJoinTable(Band newBand)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO bands_genres (bands_id, genres_id) OUTPUT INSERTED.bands_id VALUES (@BandId, @GenreId);", conn);
+
+      SqlParameter genreIdParameter = new SqlParameter();
+      genreIdParameter.ParameterName = "@GenreId";
+      genreIdParameter.Value = this.GetId();
+
+      SqlParameter bandsIdParameter = new SqlParameter();
+      bandsIdParameter.ParameterName = "@BandId";
+      bandsIdParameter.Value = newBand.GetId();
+
+      cmd.Parameters.Add(genreIdParameter);
+      cmd.Parameters.Add(bandsIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        newBand.SetId(rdr.GetInt32(0));
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+    public void UpdateName(string newName)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE genres SET name = @NewName OUTPUT INSERTED.name WHERE id = @GenreId;", conn);
+
+      SqlParameter nameParameter = new SqlParameter();
+      nameParameter.ParameterName = "@NewName";
+      nameParameter.Value = newName;
+
+      SqlParameter genreIdParameter = new SqlParameter();
+      genreIdParameter.ParameterName = "@GenreId";
+      genreIdParameter.Value = this.GetId();
+
+      cmd.Parameters.Add(nameParameter);
+      cmd.Parameters.Add(genreIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+      while(rdr.Read())
+      {
+        this._name = rdr.GetString(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
   }
 }

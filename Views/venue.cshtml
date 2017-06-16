@@ -37,5 +37,13 @@ else{
   </select>
   <button type="submit">Submit</button>
 </form>
+
+<h3>DELETE</h3>
+<p>Be Careful, this is irreversable!</p>
+<form action="/venues/@Model["venue"].GetId()/delete" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <input name="venue-id" type="hidden" value='@Model["venue"].GetId()'>
+  <button type="submit" name="delete">DELETE</button>
+</form>
 <h4><a href ="/venues/add">Add a new Venue!</a></h4>
 <h4><a href="/">home</a></h4>

@@ -2,7 +2,7 @@
   Layout="Shared/_Layout.cshtml";
 }
 <h3>@Model["band"].GetName()</h3>
-<h4>Bands:</h4>
+<h4>Upcoming Shows:</h4>
 @if (Model["venues"].Count == 0)
 {
   <p>AINT PLAYIN NOWHERE</p>
@@ -13,6 +13,20 @@ else{
     {
       <li><a href="/venues/@venue.GetId()">@venue.GetName() | @venue.GetCity()</a></li>
     }
+  </ul>
+}
+<h4>Genres this band is known for:</h4>
+@if (Model["genres"].Count == 0)
+{
+  <p>WOWEE this band somehow doesn't play any of the known genres, they must be cutting edge!</p>
+}
+else
+{
+  <ul>
+  @foreach (var genre in @Model["genres"])
+  {
+    <li><a href="/genres/@genre.GetId()">@genre.GetName()</a></li>
+  }
   </ul>
 }
 <h3>Choose a Venue for this band:</h3>

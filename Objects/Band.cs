@@ -183,6 +183,41 @@ namespace Band_Tracker.Objects
       return venues;
     }
 
+    public List<Genre> GetGenres()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT genres.* FROM bands JOIN bands_genres ON (bands_genres.bands_id = bands.id) JOIN genres ON (genres.id = bands_genres.genres_id) WHERE bands.id = @BandId ORDER BY genres.name;", conn);
+      SqlParameter bandIdParameter = new SqlParameter();
+      bandIdParameter.ParameterName = "@BandId";
+      bandIdParameter.Value = this.GetId().ToString();
+
+      cmd.Parameters.Add(bandIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Genre> genres = new List<Genre>{};
+
+      while(rdr.Read())
+      {
+        int genreId = rdr.GetInt32(0);
+        string genreName = rdr.GetString(1);
+        Genre newGenre = new Genre(genreName, genreId);
+        genres.Add(newGenre);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return genres;
+    }
+
     public void AddVenueToShowsJoinTable(Venue newVenue)
     {
       SqlConnection conn = DB.Connection();

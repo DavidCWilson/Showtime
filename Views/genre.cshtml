@@ -1,0 +1,37 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+<h3>@Model["genre"].GetName()</h3>
+<h4>Bands:</h4>
+@if (Model["bands"].Count == 0)
+{
+  <p>AINT NO BANDS</p>
+}
+else{
+  <ul>
+    @foreach (var band in @Model["bands"])
+    {
+      <li><a href="/bands/@band.GetId()">@band.GetName()</a></li>
+    }
+  </ul>
+}
+<form action='/genres/@Model["genre"].GetId()/edit_name' method="post">
+  <input type="hidden" name="_method" value="PATCH">
+  <input name="genre-id" type="hidden" value='@Model["genre"].GetId()'>
+  <label for="genre-name">Change Name:</label>
+  <input id="genre-name" name="genre-name" type="text">
+  <button type="submit">Submit</button>
+</form>
+<form action='/genres/@Model["genre"].GetId()/edit_band' method="post">
+  <input name="genre-id" type="hidden" value='@Model["genre"].GetId()'>
+  <label for="band-id">Assign a band to this genre:</label>
+  <select name="band-id">
+    @foreach (var chosenBand in @Model["allBands"])
+    {
+      <option value="@chosenBand.GetId()">@chosenBand.GetName()</option>
+    }
+  </select>
+  <button type="submit">Submit</button>
+</form>
+<h4><a href ="/genres/add">Add a new Genre!</a></h4>
+<h4><a href="/">home</a></h4>
